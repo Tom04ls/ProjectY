@@ -13,6 +13,12 @@
         android:theme="@style/Theme.ProjectY"
         tools:targetApi="31">
         <activity
+            android:name=".EventAdapter"
+            android:exported="false" />
+        <activity
+            android:name=".EventSchedules"
+            android:exported="false" />
+        <activity
             android:name=".selectDay"
             android:exported="true" />
         <activity
