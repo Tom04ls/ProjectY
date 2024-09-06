@@ -16,6 +16,13 @@
             android:name=".addScheduleActivity"
             android:exported="false" />
         <activity
+            android:name=".AddExpenses"
+            android:exported="true" />
+        <activity
+            android:name=".MonthExpenses"
+            android:exported="true" />
+
+        <activity
             android:name=".selectDay"
             android:exported="true" />
         <activity
