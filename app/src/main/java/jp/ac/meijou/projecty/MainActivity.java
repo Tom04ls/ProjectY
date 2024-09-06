@@ -54,5 +54,12 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        binding.editButton.setOnClickListener(view -> {
+            Intent intent = new Intent(this, MenuActivity.class);
+            startActivity(intent);
+        });
+
+
     }
 }
