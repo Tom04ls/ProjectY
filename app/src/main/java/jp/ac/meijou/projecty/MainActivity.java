@@ -11,6 +11,10 @@ import androidx.annotation.NonNull;
 
 import android.widget.CalendarView;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Locale;
+
 import jp.ac.meijou.projecty.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
@@ -24,17 +28,30 @@ public class MainActivity extends AppCompatActivity {
 
         setContentView(binding.getRoot());
 
-        CalendarView calendarView = findViewById(R.id.calendarView);
-        calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
+        String selectedYearMonth = getIntent().getStringExtra("selectedYearMonth");
+        if (selectedYearMonth != null) {
+            try {
+                // 年月をCalendarに設定
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+                Calendar calendar = Calendar.getInstance();
+                calendar.setTime(sdf.parse(selectedYearMonth));
+
+                // CalendarViewに年月を反映
+                binding.calendarView.setDate(calendar.getTimeInMillis(), false, true);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        binding.calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
-            public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
-                // 日付が選択されたときの処理
-                if (dayOfMonth > 0 && dayOfMonth < 32 ){
-                    var intent = new Intent(MainActivity.this, selectDay.class);
-                    startActivity(intent);
-                }
-                // year, month, dayOfMonth を使用して処理を行う
-                // 予定のTodoリストとかにしてもいいんじゃない？
+            public void onSelectedDayChange(CalendarView view, int year, int month, int dayOfMonth) {
+                // 日付を取得
+                String selectedDate = year + "-" + (month + 1) + "-" + dayOfMonth;
+
+                // 次のアクティビティに日付を渡して遷移する
+                Intent intent = new Intent(MainActivity.this, selectDay.class);
+                intent.putExtra("selectedDate", selectedDate);
+                startActivity(intent);
             }
         });
     }
