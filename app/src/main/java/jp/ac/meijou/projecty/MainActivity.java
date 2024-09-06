@@ -1,17 +1,14 @@
 package jp.ac.meijou.projecty;
 
-import android.app.Activity;
+
 import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
+
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import android.os.Bundle;
+
 import android.widget.CalendarView;
 
 import jp.ac.meijou.projecty.databinding.ActivityMainBinding;
@@ -33,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
             public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
                 // 日付が選択されたときの処理
                 if (dayOfMonth > 0 && dayOfMonth < 32 ){
-                    var intent = new Intent(this, selectDay.class);
+                    var intent = new Intent(MainActivity.this, selectDay.class);
                     startActivity(intent);
                 }
                 // year, month, dayOfMonth を使用して処理を行う
