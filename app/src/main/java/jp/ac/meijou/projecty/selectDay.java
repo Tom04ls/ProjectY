@@ -69,6 +69,14 @@ public class selectDay extends AppCompatActivity {
 
         });
 
+        binding.scheduleButton.setOnClickListener(view -> {
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+            String formattedDate = sdf.format(selectDate.getTime());
+            Intent intent = new Intent(this, addScheduleActivity.class);
+            intent.putExtra("selectedDate", formattedDate);
+            startActivity(intent);
+        });
+
     }
 
     private void upDateDisplay() {
